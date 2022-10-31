@@ -1,7 +1,6 @@
-//var createError = require('http-errors');
+var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
-//var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
@@ -44,6 +43,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(passport.initialize());
 
+//session middleware
 app.use(session({
   store: new FileStore(FileStoreOptions),
   secret: 'keyboard cat'
@@ -54,6 +54,7 @@ app.use('/users', usersRouter);
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+// routes
 app.use('/dishes', dishRouter);
 app.use('/promotions', promoRouter);
 app.use('/leaders', leaderRouter);
